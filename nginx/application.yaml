@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/TON_USER/nginx-argo.git"  # remplace par ton repo
+    repoURL: "https://github.com/Yann130/argo_cd.git"
     targetRevision: main
     path: .
   destination:
