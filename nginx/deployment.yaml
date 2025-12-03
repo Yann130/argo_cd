@@ -16,7 +16,7 @@ spec:
         app: nginx
     spec:
       imagePullSecrets:
-        - name: regcred
+        - name: dockerhub-cred
       containers:
         - name: nginx
           image: nginx:stable
