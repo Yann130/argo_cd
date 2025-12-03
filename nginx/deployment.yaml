@@ -19,6 +19,6 @@ spec:
       - name: regcred
       containers:
       - name: nginx
-        image: nginx:stable
+        image: nginx:stable   # ou bitnami/nginx:latest si pas de secret
         ports:
         - containerPort: 80
