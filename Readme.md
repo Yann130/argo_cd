@@ -13,7 +13,12 @@ L'objectif est d'implémenter une chaîne de déploiement moderne où **Git est 
 ## 📂 Structure du Projet
 
 ```text
-.
-├── argocd/                # Manifestes ArgoCD (Applications)
-│   ├── nginx/             # Le serveur web (Test de connectivité)
-│   └── wordpress/         # La stack complète (WordPress + MySQL)
+.argocd/
+├── nginx/
+│   └── deployment.yaml    # Déploiement simple pour test
+├── wordpress/
+│   ├── 01-namespace.yaml
+│   ├── 02-mysql-secret.yaml
+│   ├── 03-mysql.yaml
+│   └── 04-wordpress.yaml
+└── Readme.md
