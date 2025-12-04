@@ -1,0 +1,25 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build-analyze-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Ici, on demande à Trivy de scanner ton fichier de config Kubernetes
+      # pour voir s'il y a des erreurs de configuration (ex: tourner en root)
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          format: 'table'
+          exit-code: '1'        # Fait échouer la pipeline si faille trouvée
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
