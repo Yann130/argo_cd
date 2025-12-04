@@ -9,7 +9,7 @@ jobs:
   build-analyze-scan:
     runs-on: ubuntu-latest
     permissions:
-      security-events: write  # Obligatoire pour l'onglet Security
+      security-events: write  # Indispensable pour l'onglet Security
       actions: read
       contents: read
 
@@ -22,14 +22,14 @@ jobs:
         with:
           scan-type: 'config'
           scan-ref: '.'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH' # On surveille les failles graves
-          exit-code: '1'            # <--- C'EST ICI : 1 = BLOQUANT (Échec si faille trouvée)
+          format: 'sarif'                 # <--- Format pour l'onglet Security
+          output: 'trivy-results.sarif'   # <--- On écrit dans un fichier
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'                  # <--- BLOQUANT : La pipeline échoue si faille trouvée
           ignore-unfixed: true
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
-        if: always()                # <--- CRUCIAL : Envoie le rapport même si l'étape d'avant a planté
+        if: always()                      # <--- IMPORTANT : Envoie le rapport même si ça plante
         with:
           sarif_file: 'trivy-results.sarif'
