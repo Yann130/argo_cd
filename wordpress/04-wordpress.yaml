@@ -28,7 +28,6 @@ spec:
         app: wordpress
         tier: frontend
     spec:
-      # UTILISATION DE TON SECRET DOCKERHUB
       imagePullSecrets:
         - name: dockerhub-cred
       containers:
@@ -63,7 +62,6 @@ metadata:
   name: wordpress
   namespace: wordpress-app
 spec:
-  # C'EST ICI QUE C'EST SIMPLIFIÉ
   type: NodePort
   ports:
     - port: 80
