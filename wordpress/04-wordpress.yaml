@@ -33,6 +33,11 @@ spec:
       containers:
       - image: wordpress:6
         name: wordpress
+        # --- AJOUT SECURITE (Fix Trivy KSV104) ---
+        securityContext:
+          seccompProfile:
+            type: RuntimeDefault
+        # -----------------------------------------
         env:
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
