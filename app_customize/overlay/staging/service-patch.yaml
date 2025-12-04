@@ -4,5 +4,5 @@ metadata:
   name: nginx-app
 spec:
   ports:
-  - port: 80         # <--- C'est la CLÉ indispensable !
+  - port: 80     
     nodePort: 30045
