@@ -5,4 +5,4 @@ metadata:
 spec:
   ports:
   - port: 80
-    nodePort: 300045
+    nodePort: 30045
