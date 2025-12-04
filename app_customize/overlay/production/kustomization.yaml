@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: production
+
+resources:
+- ../../base
+- namespace.yaml
+
+patches:
+- path: service-patch.yaml  # Patch du port
+- path: replicas-patch.yaml # Patch des réplicas
+
+images:
+- name: nginx:1.23.0
+  newName: nginx
+  newTag: 1.23.0
