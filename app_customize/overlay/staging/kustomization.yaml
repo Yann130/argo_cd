@@ -4,12 +4,10 @@ namespace: staging
 
 resources:
 - ../../base
-- namespace.yaml
+- canary.yaml
 
-patches:
-- path: service-patch.yaml # <--- On applique le patch de port
 
 images:
 - name: nginx:1.23.0
   newName: nginx
-  newTag: 1.24.0
+  newTag: 1.24.0 # Version cible
