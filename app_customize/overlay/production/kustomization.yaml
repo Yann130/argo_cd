@@ -4,13 +4,12 @@ namespace: production
 
 resources:
 - ../../base
-- namespace.yaml
+- canary.yaml   # <--- Ajout du Canary
 
 patches:
-- path: service-patch.yaml  # Patch du port
-- path: replicas-patch.yaml # Patch des réplicas
+- path: ingress-patch.yaml # Garde celui-ci pour définir le nom de domaine (host)
 
 images:
 - name: nginx:1.23.0
   newName: nginx
-  newTag: 1.23.0
+  newTag: 1.23.0 # On reste sur la version stable pour l'instant
