@@ -1,0 +1,35 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: nginx-app
+  namespace: staging
+spec:
+  provider: nginx
+  
+  # Cible le déploiement existant
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-app
+    
+  # Cible l'Ingress existant
+  ingressRef:
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: nginx-ingress
+    
+  # Flagger va générer ce service ClusterIP
+  service:
+    port: 80
+    targetPort: 80
+
+  # La stratégie de test
+  analysis:
+    interval: 30s
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 10 
+    metrics:
+    - name: request-success-rate
+      thresholdRange:
+        min: 99
