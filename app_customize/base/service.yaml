@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: nginx-app
 spec:
-  type: NodePort  # <--- Le changement est ici
-  selector:
-    app: nginx-app
   ports:
-  - protocol: TCP
+  - name: http
     port: 80
     targetPort: 80
-    # On ne définit pas le nodePort ici pour éviter les conflits
+  selector:
+    app: nginx-app
